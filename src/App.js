@@ -3,7 +3,12 @@ import {useState} from "react";
 
 function App() {
     let post = 'Development Blog';
-    let [postNames, b] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
+    let [postNames] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
+    let [likeCount, likeCountModify] = useState(0);
+
+    function addLikeCount() {
+        likeCountModify(likeCount++)
+    }
 
     return (
         <div className="App">
@@ -11,7 +16,7 @@ function App() {
                 <h4>{post}</h4>
             </div>
             <div className="list">
-                <h4>{postNames[0]}</h4>
+                <h4>{postNames[0]} <span onClick={addLikeCount}>👍</span> {likeCount} </h4>
                 <p>1월 19일 발행</p>
             </div>
             <div className="list">
