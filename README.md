@@ -27,3 +27,6 @@ array, object 특징 - 포인터 저장하게 됨
 1. html css 미리 디자인 완성
 2. state로 저장
 3. state에 따라 UI 보여주기
+
+### 부모에서 자식으로 state 전송 가능
+props 문법 이용

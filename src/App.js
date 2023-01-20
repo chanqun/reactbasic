@@ -4,25 +4,15 @@ import {useState} from "react";
 function App() {
     let post = 'Development Blog';
     let [postNames, setPostNames] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
-    let [likeCount, setLikeCount] = useState(0);
+    let [likeCount, setLikeCount] = useState([0, 0, 0]);
     let [modal, setModal] = useState(false);
+    let [titleIndex, setTitleIndex] = useState(0);
 
-    function changePostName() {
-        let copy = [...postNames];
-        copy[0] = '여자 코트 추천';
+    function addLikeCount(index) {
+        let copy = [...likeCount];
+        copy[index]++
 
-        setPostNames(copy);
-    }
-
-    function addLikeCount() {
-        setLikeCount(likeCount++);
-    }
-
-    function sortPostName() {
-        let copy = [...postNames];
-        copy.sort();
-
-        setPostNames(copy);
+        setLikeCount(copy);
     }
 
     return (
@@ -31,37 +21,32 @@ function App() {
                 <h4>{post}</h4>
             </div>
 
-            <button onClick={changePostName}>글 수정</button>
-            <button onClick={sortPostName}>가나다 정렬</button>
-
-            <div className="list">
-                <h4>{postNames[0]} <span onClick={addLikeCount}>👍</span> {likeCount} </h4>
-                <p>1월 19일 발행</p>
-            </div>
-            <div className="list">
-                <h4>{postNames[1]}</h4>
-                <p>1월 19일 발행</p>
-            </div>
-            <div className="list">
-                <h4 onClick={() => {
-                    setModal(!modal)
-                }}>{postNames[2]}</h4>
-                <p>1월 19일 발행</p>
-            </div>
+            {
+                postNames.map(function (postName, index) {
+                    return <div className="list" key={index}>
+                        <h4 onClick={() => {
+                            setModal(!modal)
+                            setTitleIndex(index)
+                        }}>{postName} <span onClick={addLikeCount}>👍</span> {likeCount[index]} </h4>
+                        <p>1월 19일 발행</p>
+                    </div>
+                })
+            }
 
             {
-                modal ? <Modal></Modal> : null
+                modal ? <Modal titleIndex={titleIndex} postNames={postNames} setPostNames={setPostNames} color={"skyblue"}/> : null
             }
         </div>
     );
 }
 
-function Modal() {
+function Modal(props) {
     return (
-        <div className="modal">
-            <h4>제목</h4>
+        <div className="modal" style={{background: props.color}}>
+            <h4>{props.postNames[props.titleIndex]}</h4>
             <p>날짜</p>
             <p>상세내용</p>
+            <button>글수정</button>
         </div>
     );
 }
