@@ -7,6 +7,7 @@ function App() {
     let [likeCount, setLikeCount] = useState([0, 0, 0]);
     let [modal, setModal] = useState(false);
     let [titleIndex, setTitleIndex] = useState(0);
+    let [inputValue, setInputValue] = useState('');
 
     function addLikeCount(index) {
         let copy = [...likeCount];
@@ -29,12 +30,27 @@ function App() {
                             setTitleIndex(index)
                         }}>{postName} <span onClick={addLikeCount}>👍</span> {likeCount[index]} </h4>
                         <p>1월 19일 발행</p>
+                        <button onClick={() => {
+                            let copy = [...postNames];
+                            copy.splice(index, 1);
+                            setPostNames(copy);}
+                        }>삭제</button>
                     </div>
                 })
             }
 
+            <input onChange={(e) => {
+                setInputValue(e.target.value)
+            }}/>
+            <button onClick={() => {
+                let copy = [...postNames];
+                copy.unshift(inputValue);
+                setPostNames(copy);
+            }}>글추가</button>
+
             {
-                modal ? <Modal titleIndex={titleIndex} postNames={postNames} setPostNames={setPostNames} color={"skyblue"}/> : null
+                modal ? <Modal titleIndex={titleIndex} postNames={postNames} setPostNames={setPostNames}
+                               color={"skyblue"}/> : null
             }
         </div>
     );
