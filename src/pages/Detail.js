@@ -1,4 +1,5 @@
 import {useParams} from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 function Detail(props) {
     let {id} = useParams();
@@ -16,7 +17,7 @@ function Detail(props) {
                     <h4 className="pt-5">{product.title}</h4>
                     <p>{product.content}</p>
                     <p>{product.price}원</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <Button className="btn btn-danger">주문하기</Button>
                 </div>
             </div>
         </div>

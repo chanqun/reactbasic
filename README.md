@@ -78,3 +78,31 @@ navigate(-1) 전 페이지 돌아가기
 ```
 About이랑 Member 둘 다 볼 수 있게 할 수 있음
 About 내부에 보여줄지 작성해주면 됨 <Outlet></Outlet>
+
+### styled components
+장점 
+- 스타일이 다른 js파일로 오염되지 않음
+- 페이지 로딩시간 단축
+- javascript 코드도 적용 가능함
+- 기존 스타일 복사해서 custom도 가능
+
+> App.module.css -> App.js 에만 적용하게도 가능
+
+단점
+- 재사용 export import가 많아짐
+- js파일 매우복잡해짐
+- 협업시 css 담당의 숙련도 이슈
+
+```javascript
+import styled from "styled-components";
+
+let ColoredBtn = styled.button`
+  background: ${props => props.bg};
+  color: ${props => props.bg=='blue' ? 'white' : 'black'};
+  padding: 10px;
+`
+
+<ColoredBtn bg={"yellow"}>버튼</ColoredBtn>
+
+let NewBtn = styled.button(ColoredBtn)
+```
