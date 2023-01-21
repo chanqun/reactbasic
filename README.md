@@ -68,3 +68,13 @@ public 폴더에 있던건 압축안됨 (./logo192.png) 바로 사용할 수 있
 <img src={process.env.PUBLIC_URL + '/logo192.png'}/>
 ```
 
+### navigate, nested routes, outlet
+navigate(-1) 전 페이지 돌아가기
+
+```javascript
+<Route path="/about" element="<About/>">
+    <Route path="member" element="<Member/>">
+</Route>
+```
+About이랑 Member 둘 다 볼 수 있게 할 수 있음
+About 내부에 보여줄지 작성해주면 됨 <Outlet></Outlet>
