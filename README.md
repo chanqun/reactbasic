@@ -58,3 +58,13 @@ class Modal extends React.Component {
     }
 }
 ```
+
+### src안의 모든 파일은 압축
+
+public 폴더에 있던건 압축안됨 (./logo192.png) 바로 사용할 수 있음
+나중에 sub경로에 발행하고 싶으면 경로를 수정해야함
+
+```javascript
+<img src={process.env.PUBLIC_URL + '/logo192.png'}/>
+```
+
