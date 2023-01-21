@@ -1,9 +1,4 @@
-import {useState} from "react";
-import shoeData from "../data";
-
-function Main() {
-    let [shoes] = useState(shoeData);
-
+function Main(props) {
     return (
         <>
             <div className="main-bg"/>
@@ -11,7 +6,7 @@ function Main() {
             <div className="container">
                 <div className="row">
                     {
-                        shoes.map((shoe) => {
+                        props.shoes.map((shoe) => {
                             return (
                                 <Product shoe={shoe}/>
                             )

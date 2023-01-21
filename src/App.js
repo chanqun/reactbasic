@@ -3,8 +3,11 @@ import {Container, Nav, Navbar} from "react-bootstrap";
 import {Routes, Route, useNavigate, Outlet} from 'react-router-dom';
 import Detail from "./pages/Detail";
 import Main from "./pages/Main";
+import {useState} from "react";
+import shoeData from "./data";
 
 function App() {
+    let [shoes] = useState(shoeData);
     let navigate = useNavigate();
 
     return (
@@ -20,8 +23,8 @@ function App() {
             </Navbar>
 
             <Routes>
-                <Route path="/" element={<Main/>}/>
-                <Route path="/detail" element={<Detail/>}/>
+                <Route path="/" element={<Main shoes={shoes}/>}/>
+                <Route path="/detail/:id" element={<Detail shoes={shoes}/>}/>
                 <Route path="*" element={<div>404 Not Found</div>}/>
             </Routes>
         </div>
