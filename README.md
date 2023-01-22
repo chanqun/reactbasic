@@ -106,3 +106,23 @@ let ColoredBtn = styled.button`
 
 let NewBtn = styled.button(ColoredBtn)
 ```
+
+### 컴포넌트 lifecycle
+mount, update unmount
+
+lifecycle 중간에 hook 훅 걸 수 있음
+
+옛날에는 
+```javascript
+componentDidMount()
+componentDidUpdate()
+componentDidUnmount()
+```
+
+요즘은
+useEffect html 렌더링 후에 동작
+```javascript
+useEffect(() => {
+
+})
+```
