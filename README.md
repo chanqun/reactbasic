@@ -123,6 +123,10 @@ componentDidUnmount()
 useEffect html 렌더링 후에 동작
 ```javascript
 useEffect(() => {
-
-})
+    return () => {
+        // clean up function > useEffect 동작 전 실행
+        // 2초 사이에 재렌더링 되어버리면 버그가 생길 수 있음 / 기존 데이터요청은 제거해주세요 / unmount일때만 실행됨
+    }
+}, [state])
 ```
+state넣으면 state 변경시만 작동함, [] 넣으면 재 랜더링시에도 동작하지 않음 (1회만 동작하도록)
