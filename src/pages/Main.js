@@ -1,3 +1,5 @@
+import axios from "axios";
+
 function Main(props) {
     return (
         <>
@@ -13,6 +15,22 @@ function Main(props) {
                         })
                     }
                 </div>
+                <button onClick={() => {
+                    axios.get('https://codingapple1.github.io/shop/data' + props.pageNumber + '.json')
+                        .then((res) => {
+                            let copy = [...props.shoes, ...res.data]
+
+                            props.setShoes(copy)
+
+                            props.setPageNumber(props.pageNumber++)
+                        })
+                        .catch(
+                            () => {
+                                alert('잠시 후 다시 시도해주세요.')
+                            }
+                        )
+                }}>버튼
+                </button>
             </div>
         </>
     )

@@ -6,8 +6,7 @@ let [a, b] = useState('남자 코트 추천');
 
 a는 자료, b는 state 변경도와주는 함수
 
-일반 변수는 변경감지가 안 된다.
-state 쓰면 html은 자동 재렌더링됨
+일반 변수는 변경감지가 안 된다. state 쓰면 html은 자동 재렌더링됨
 
 ### state 변경원리
 
@@ -61,26 +60,28 @@ class Modal extends React.Component {
 
 ### src안의 모든 파일은 압축
 
-public 폴더에 있던건 압축안됨 (./logo192.png) 바로 사용할 수 있음
-나중에 sub경로에 발행하고 싶으면 경로를 수정해야함
+public 폴더에 있던건 압축안됨 (./logo192.png) 바로 사용할 수 있음 나중에 sub경로에 발행하고 싶으면 경로를 수정해야함
 
 ```javascript
 <img src={process.env.PUBLIC_URL + '/logo192.png'}/>
 ```
 
 ### navigate, nested routes, outlet
+
 navigate(-1) 전 페이지 돌아가기
 
 ```javascript
 <Route path="/about" element="<About/>">
     <Route path="member" element="<Member/>">
-</Route>
+    </Route>
 ```
-About이랑 Member 둘 다 볼 수 있게 할 수 있음
-About 내부에 보여줄지 작성해주면 됨 <Outlet></Outlet>
+
+About이랑 Member 둘 다 볼 수 있게 할 수 있음 About 내부에 보여줄지 작성해주면 됨 <Outlet></Outlet>
 
 ### styled components
-장점 
+
+장점
+
 - 스타일이 다른 js파일로 오염되지 않음
 - 페이지 로딩시간 단축
 - javascript 코드도 적용 가능함
@@ -89,6 +90,7 @@ About 내부에 보여줄지 작성해주면 됨 <Outlet></Outlet>
 > App.module.css -> App.js 에만 적용하게도 가능
 
 단점
+
 - 재사용 export import가 많아짐
 - js파일 매우복잡해짐
 - 협업시 css 담당의 숙련도 이슈
@@ -98,29 +100,32 @@ import styled from "styled-components";
 
 let ColoredBtn = styled.button`
   background: ${props => props.bg};
-  color: ${props => props.bg=='blue' ? 'white' : 'black'};
+  color: ${props => props.bg == 'blue' ? 'white' : 'black'};
   padding: 10px;
 `
 
-<ColoredBtn bg={"yellow"}>버튼</ColoredBtn>
+    < ColoredBtn
+bg = {"yellow"} > 버튼 < /ColoredBtn>
 
 let NewBtn = styled.button(ColoredBtn)
 ```
 
 ### 컴포넌트 lifecycle
+
 mount, update unmount
 
 lifecycle 중간에 hook 훅 걸 수 있음
 
-옛날에는 
+옛날에는
+
 ```javascript
 componentDidMount()
 componentDidUpdate()
 componentDidUnmount()
 ```
 
-요즘은
-useEffect html 렌더링 후에 동작
+요즘은 useEffect html 렌더링 후에 동작
+
 ```javascript
 useEffect(() => {
     return () => {
@@ -129,4 +134,9 @@ useEffect(() => {
     }
 }, [state])
 ```
+
 state넣으면 state 변경시만 작동함, [] 넣으면 재 랜더링시에도 동작하지 않음 (1회만 동작하도록)
+
+### axios 여러개 보내려면
+둘다 성공했을때
+Promise.all([axios.get('/url1'), axios.get('/url2')])

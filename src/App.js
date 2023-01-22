@@ -7,7 +7,8 @@ import {useState} from "react";
 import shoeData from "./data";
 
 function App() {
-    let [shoes] = useState(shoeData);
+    let [shoes, setShoes] = useState(shoeData);
+    let [pageNumber, setPageNumber] = useState(2)
     let navigate = useNavigate();
 
     return (
@@ -23,7 +24,9 @@ function App() {
             </Navbar>
 
             <Routes>
-                <Route path="/" element={<Main shoes={shoes}/>}/>
+                <Route path="/"
+                       element={<Main shoes={shoes} setShoes={setShoes} pageNumber={pageNumber}
+                                      setPageNumber={setPageNumber}/>}/>
                 <Route path="/detail/:id" element={<Detail shoes={shoes}/>}/>
                 <Route path="*" element={<div>404 Not Found</div>}/>
             </Routes>
