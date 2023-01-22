@@ -142,3 +142,6 @@ state넣으면 state 변경시만 작동함, [] 넣으면 재 랜더링시에도
 Promise.all([axios.get('/url1'), axios.get('/url2')])
 
 > props 중괄호로 받으면 바로 받을 수 있음
+
+### 리액트의 automatic batching
+비슷한 것은 한 번에 처리함
