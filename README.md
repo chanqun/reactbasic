@@ -159,3 +159,6 @@ useContext()
 <Context1.Provider value={{재고}}>
 ```
 재랜더리딩하면 안 쓰는 애들도 재렌더링 되기 때문에 성능 이슈, 재사용성이 떨어짐 
+
+### redux
+redux store.js에서 state를 전부 빼서 사용할 수 있다.

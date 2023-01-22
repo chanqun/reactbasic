@@ -5,8 +5,7 @@ import Detail from "./pages/Detail";
 import Main from "./pages/Main";
 import {createContext, useState} from "react";
 import shoeData from "./data";
-
-export let Context1 = createContext()
+import Cart from "./pages/Cart";
 
 function App() {
     let [shoes, setShoes] = useState(shoeData);
@@ -20,7 +19,7 @@ function App() {
                     <Navbar.Brand href="/">Chanqun</Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
-                        <Nav.Link onClick={() => navigate('/detail')}>Cart</Nav.Link>
+                        <Nav.Link onClick={() => navigate('/cart')}>Cart</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -30,6 +29,7 @@ function App() {
                        element={<Main shoes={shoes} setShoes={setShoes} pageNumber={pageNumber}
                                       setPageNumber={setPageNumber}/>}/>
                 <Route path="/detail/:id" element={<Detail shoes={shoes}/>}/>
+                <Route path="/cart" element={<Cart/>}/>
                 <Route path="*" element={<div>404 Not Found</div>}/>
             </Routes>
         </div>
