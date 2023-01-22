@@ -1,6 +1,8 @@
 import {useParams} from "react-router-dom";
 import {Button, Nav} from "react-bootstrap";
 import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {addItem} from "../store/cartSlice";
 
 function Detail(props) {
     let {id} = useParams();
@@ -8,6 +10,7 @@ function Detail(props) {
         return product.id = id
     });
     let [tab, setTab] = useState(0)
+    let dispatch = useDispatch()
 
     return (
         <div className="container">
@@ -19,7 +22,9 @@ function Detail(props) {
                     <h4 className="pt-5">{product.title}</h4>
                     <p>{product.content}</p>
                     <p>{product.price}원</p>
-                    <Button className="btn btn-danger">주문하기</Button>
+                    <Button className="btn btn-danger" onClick={() => {
+                        dispatch(addItem({id: product.id, name: product.title, count: 1}))
+                    }}>주문하기</Button>
                 </div>
             </div>
 
