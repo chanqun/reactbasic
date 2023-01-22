@@ -145,3 +145,17 @@ Promise.all([axios.get('/url1'), axios.get('/url2')])
 
 ### 리액트의 automatic batching
 비슷한 것은 한 번에 처리함
+
+### Single Page Application 단점: 컴포넌트간 state 공유 어려움
+
+Context API (성능이슈, 컴포넌트 재활용 어려움), redux 
+props 전송없이 state 공유가능
+
+```javascript
+export let Context1 = createContext()
+
+useContext()
+
+<Context1.Provider value={{재고}}>
+```
+재랜더리딩하면 안 쓰는 애들도 재렌더링 되기 때문에 성능 이슈, 재사용성이 떨어짐 

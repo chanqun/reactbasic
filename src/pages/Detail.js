@@ -35,7 +35,7 @@ function Detail(props) {
                 </Nav.Item>
             </Nav>
 
-            <TabContent tab={tab}/>
+            <TabContent tab={tab} product={product}/>
         </div>
     )
 }

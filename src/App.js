@@ -3,8 +3,10 @@ import {Container, Nav, Navbar} from "react-bootstrap";
 import {Routes, Route, useNavigate, Outlet} from 'react-router-dom';
 import Detail from "./pages/Detail";
 import Main from "./pages/Main";
-import {useState} from "react";
+import {createContext, useState} from "react";
 import shoeData from "./data";
+
+export let Context1 = createContext()
 
 function App() {
     let [shoes, setShoes] = useState(shoeData);
