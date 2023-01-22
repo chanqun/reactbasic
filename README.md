@@ -140,3 +140,5 @@ state넣으면 state 변경시만 작동함, [] 넣으면 재 랜더링시에도
 ### axios 여러개 보내려면
 둘다 성공했을때
 Promise.all([axios.get('/url1'), axios.get('/url2')])
+
+> props 중괄호로 받으면 바로 받을 수 있음

@@ -1,20 +1,13 @@
 import {useParams} from "react-router-dom";
-import {Button} from "react-bootstrap";
-import {useEffect, useState} from "react";
+import {Button, Nav} from "react-bootstrap";
+import {useState} from "react";
 
 function Detail(props) {
     let {id} = useParams();
     let product = props.shoes.find(function (product) {
         return product.id = id
     });
-
-    let [num, setNum] = useState('')
-
-    useEffect(()=>{
-        if (isNaN(num) == true){
-            alert('숫자만 입력해주세요')
-        }
-    }, [num])
+    let [tab, setTab] = useState(0)
 
     return (
         <div className="container">
@@ -22,7 +15,6 @@ function Detail(props) {
                 <div className="col-md-6">
                     <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>
                 </div>
-                <input onChange={(e)=>{ setNum(e.target.value) }} />
                 <div className="col-md-6">
                     <h4 className="pt-5">{product.title}</h4>
                     <p>{product.content}</p>
@@ -30,8 +22,26 @@ function Detail(props) {
                     <Button className="btn btn-danger">주문하기</Button>
                 </div>
             </div>
+
+            <Nav variant="tabs" defaultActiveKey="link0">
+                <Nav.Item>
+                    <Nav.Link eventKey="link0" onClick={() => setTab(0)}>버튼0</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link1" onClick={() => setTab(1)}>버튼1</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link2" onClick={() => setTab(2)}>버튼2</Nav.Link>
+                </Nav.Item>
+            </Nav>
+
+            <TabContent tab={tab}/>
         </div>
     )
+}
+
+function TabContent({tab}) {
+    return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]
 }
 
 export default Detail;
