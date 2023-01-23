@@ -240,3 +240,54 @@ let Child = memo(function () {
 useMemo(()=>{return 함수()}, [state])
 ```
 
+### batch 기능
+ajax, setTimeout 내부라면
+어디있던 한번만 동작함
+
+### useTransition 느린 컴포넌트 성능향상가능
+useDeferredValue
+
+### PWA 
+```
+npx create-react-app 프로젝트명 --template cra-template-pwa
+```
+
+manifest.json
+manifest.json 파일은 웹앱의 아이콘, 이름, 테마색 이런걸 결정하는 부분
+
+이걸 흉내내도록 도와주는 파일이 바로 service-worker
+이 파일에 설정을 잘 해주면 이제 여러분의 웹앱을 설치했을 때 어떤 CSS, JS, HTML, 이미지 파일이 하드에 설치될지 결정할 수 있다.
+
+
+### sync, async
+async 이기 때문에 더 올라갈 수 있으니 state 변경 되면 실행해주게 할 수 있음
+useEffect(()=>{
+
+}, [count]) 
+
+
+HTML5 이후에 추가된 웹개발 기본 기술
+
+- FileReader API
+- 로컬스토리지
+- IndexedDB
+- Web worker
+- Geolocation
+- Canvas
+- drag & drop & touch 이벤트
+- fetch API
+- CSS grid, flex 레이아웃
+- Web audio/video
+
+
+참고
+(수강생 작) 완벽한 하루 : 목표 달성 앱 https://jioo-developer.github.io/
+(수강생 작) Firebase 더한 Velog https://hopeful-brown-a1e560.netlify.app/
+리액트로 만든 테트리스 https://chvin.github.io/react-tetris/ (spacebar, 방향키 이용)
+간단한 영화정보 검색기 https://skempin.github.io/reactjs-tmdb-app/
+파일 버전관리 툴인 git 문법 배우기 앱 https://learngitbranching.js.org/
+iOS 스타일 계산기 https://codepen.io/mjijackson/full/xOzyGX
+가짜 주식 트레이딩 앱 http://web-demo.adaptivecluster.com/
+캘린더 UI http://clauderic.github.io/react-infinite-calendar/
+스케치패드 http://svrcekmichal.github.io/react-sketchpad/
+솔리테르 Solitaire 게임 http://pl12133.github.io/react-solitaire/
