@@ -3,11 +3,19 @@ import {Container, Nav, Navbar} from "react-bootstrap";
 import {Routes, Route, useNavigate, Outlet} from 'react-router-dom';
 import Detail from "./pages/Detail";
 import Main from "./pages/Main";
-import {createContext, useState} from "react";
+import {useEffect, useState} from "react";
 import shoeData from "./data";
 import Cart from "./pages/Cart";
 
 function App() {
+    useEffect(() => {
+        if (localStorage.getItem('watched')) {
+            return
+        }
+
+        localStorage.setItem('watched', JSON.stringify([]))
+    }, [])
+
     let [shoes, setShoes] = useState(shoeData);
     let [pageNumber, setPageNumber] = useState(2)
     let navigate = useNavigate();

@@ -5,6 +5,15 @@ import {useDispatch} from "react-redux";
 import {addItem} from "../store/cartSlice";
 
 function Detail(props) {
+    useEffect(() => {
+        let items = JSON.parse(localStorage.getItem('watched'))
+        items.push(product.id)
+
+        let itemSet = new Set(items)
+
+        localStorage.setItem('watched', JSON.stringify(itemSet))
+    })
+
     let {id} = useParams();
     let product = props.shoes.find(function (product) {
         return product.id = id

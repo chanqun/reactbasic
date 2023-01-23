@@ -162,3 +162,26 @@ useContext()
 
 ### redux
 redux store.js에서 state를 전부 빼서 사용할 수 있다.
+
+### localStorage
+state 초기화 되는 것 싫으면 서버로 보내서 DB에 저장하면 됨
+차선책은 localStorage에 저장 (반영구적 저장 가능)
+
+최대 5MB 까지 문서만 저장할 수 있음
+
+```javascript
+localStorage.setItem('age', '20')
+
+localStorage.getItem('age')
+
+localStorage.removeItem('age')
+```
+
+JSON.stringify
+JSON.parse()
+
+redux-persist, localStorage
+Jotai, Zustand
+### session storage
+브라우저 끄면 날라감
+
