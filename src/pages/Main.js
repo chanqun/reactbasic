@@ -4,7 +4,6 @@ function Main(props) {
     return (
         <>
             <div className="main-bg"/>
-
             <div className="container">
                 <div className="row">
                     {

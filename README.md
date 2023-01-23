@@ -182,6 +182,24 @@ JSON.parse()
 
 redux-persist, localStorage
 Jotai, Zustand
+
 ### session storage
 브라우저 끄면 날라감
 
+### react query
+- ajax 성공 실패 html 다르게
+- 자동으로 ajax 요청
+- 실패시 몇초 후 재시도
+- prefetch
+- caching 기능도 있음
+
+자동 retry
+``` javascript
+let result = useQuery('name', () =>
+            axios.get('https://codingapple1.github.io/userdata.json')
+                .then((a) => {
+                    return a.data
+                }),
+        {staleTime: 2000}
+    )
+```

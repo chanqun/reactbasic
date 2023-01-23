@@ -8,10 +8,7 @@ function Detail(props) {
     useEffect(() => {
         let items = JSON.parse(localStorage.getItem('watched'))
         items.push(product.id)
-
-        let itemSet = new Set(items)
-
-        localStorage.setItem('watched', JSON.stringify(itemSet))
+        localStorage.setItem('watched', JSON.stringify(items))
     })
 
     let {id} = useParams();
