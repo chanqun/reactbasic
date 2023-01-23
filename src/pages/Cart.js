@@ -1,13 +1,19 @@
 import {Table} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {addCount} from "../store/cartSlice";
+import {memo, useState} from "react";
 
+// Cart 재렌더링시 Child도 재렌더링 됨
 function Cart() {
     let state = useSelector((state) => state)
     let dispatch = useDispatch()
+    let [count, setCount] = useState(0)
 
     return (
         <div>
+            <Child/>
+            <button onClick={() => setCount(count + 1)}>+</button>
+
             <h6>{state.user.name}의 장바구니</h6>
             <Table>
                 <thead>
@@ -41,5 +47,11 @@ function Cart() {
         </div>
     )
 }
+
+let Child = memo(function () {
+    return (
+        <div>자식임</div>
+    )
+})
 
 export default Cart;

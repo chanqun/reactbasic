@@ -138,34 +138,41 @@ useEffect(() => {
 state넣으면 state 변경시만 작동함, [] 넣으면 재 랜더링시에도 동작하지 않음 (1회만 동작하도록)
 
 ### axios 여러개 보내려면
-둘다 성공했을때
-Promise.all([axios.get('/url1'), axios.get('/url2')])
+
+둘다 성공했을때 Promise.all([axios.get('/url1'), axios.get('/url2')])
 
 > props 중괄호로 받으면 바로 받을 수 있음
 
 ### 리액트의 automatic batching
+
 비슷한 것은 한 번에 처리함
 
 ### Single Page Application 단점: 컴포넌트간 state 공유 어려움
 
-Context API (성능이슈, 컴포넌트 재활용 어려움), redux 
-props 전송없이 state 공유가능
+Context API (성능이슈, 컴포넌트 재활용 어려움), redux props 전송없이 state 공유가능
 
 ```javascript
 export let Context1 = createContext()
 
 useContext()
 
-<Context1.Provider value={{재고}}>
+< Context1.Provider
+value = {
+{
+    재고
+}
+}>
 ```
-재랜더리딩하면 안 쓰는 애들도 재렌더링 되기 때문에 성능 이슈, 재사용성이 떨어짐 
+
+재랜더리딩하면 안 쓰는 애들도 재렌더링 되기 때문에 성능 이슈, 재사용성이 떨어짐
 
 ### redux
+
 redux store.js에서 state를 전부 빼서 사용할 수 있다.
 
 ### localStorage
-state 초기화 되는 것 싫으면 서버로 보내서 DB에 저장하면 됨
-차선책은 localStorage에 저장 (반영구적 저장 가능)
+
+state 초기화 되는 것 싫으면 서버로 보내서 DB에 저장하면 됨 차선책은 localStorage에 저장 (반영구적 저장 가능)
 
 최대 5MB 까지 문서만 저장할 수 있음
 
@@ -177,16 +184,16 @@ localStorage.getItem('age')
 localStorage.removeItem('age')
 ```
 
-JSON.stringify
-JSON.parse()
+JSON.stringify JSON.parse()
 
-redux-persist, localStorage
-Jotai, Zustand
+redux-persist, localStorage Jotai, Zustand
 
 ### session storage
+
 브라우저 끄면 날라감
 
 ### react query
+
 - ajax 성공 실패 html 다르게
 - 자동으로 ajax 요청
 - 실패시 몇초 후 재시도
@@ -194,6 +201,7 @@ Jotai, Zustand
 - caching 기능도 있음
 
 자동 retry
+
 ``` javascript
 let result = useQuery('name', () =>
             axios.get('https://codingapple1.github.io/userdata.json')
@@ -203,3 +211,32 @@ let result = useQuery('name', () =>
         {staleTime: 2000}
     )
 ```
+
+### build 하면 하나의 js로 만들어져서 처음에 오래걸림
+
+메인페이지에선 먼저 로드 할 필요 없는 것을 lazyloading 할 수 있음
+
+```javascript
+const Detail = lazy(() => import('./routes/Detail.js'));
+
+<Suspense fallback={<div>로딩중</div>} component
+```
+
+### memo 꼭 필요할 때만 재렌더링해라
+props가 변할 때만 재렌더링해줌
+기존 props와 비교 작업을 계속하게 됨
+
+```javascript
+let Child = memo(function () {
+    return (
+        <div>자식임</div>
+    )
+})
+```
+
+### useMemo 컴포넌트 렌더링시 1회만 실행해줌
+
+```javascript
+useMemo(()=>{return 함수()}, [state])
+```
+
